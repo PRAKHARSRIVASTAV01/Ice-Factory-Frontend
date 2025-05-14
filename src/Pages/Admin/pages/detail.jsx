@@ -262,7 +262,10 @@ function Detail() {
               <tr key={item.orderId} className="text-center border-t">
                 <td className="py-2 px-4 border">{index + 1}</td>
                 <td className="py-2 px-4 border">{item.orderId}</td>
-                <td className="py-2 px-4 border">{item.firstName} {item.lastName}</td>
+                <td className="py-2 px-4 border">
+  {item.rate === 0 ? `${item.firstName}*` : item.firstName} {item.lastName}
+</td>
+                {/* <td className="py-2 px-4 border">{item.firstName} {item.lastName}</td> */}
                 <td className="py-2 px-4 border">{item.quantity}</td>
                 <td className="py-2 px-4 border">{item.street}, {item.city} - {item.pincode}</td>
                 <td className="py-2 px-4 border">{item.phone}</td>
@@ -310,7 +313,10 @@ function Detail() {
         <tr key={item.orderId} className="text-center border-t">
           <td className="py-2 px-4 border">{index + 1}</td>
           <td className="py-2 px-4 border">{item.orderId}</td>
-          <td className="py-2 px-4 border">{item.firstName} {item.lastName}</td>
+          {/* <td className="py-2 px-4 border">{item.firstName} {item.lastName}</td> */}
+          <td className="py-2 px-4 border">
+  {item.rate === 0 ? `${item.firstName}*` : item.firstName} {item.lastName}
+</td>
           <td className="py-2 px-4 border">{item.quantity}</td>
           <td className="py-2 px-4 border">{item.street}, {item.city} - {item.pincode}</td>
           <td className="py-2 px-4 border">{item.phone}</td>
@@ -326,12 +332,20 @@ function Detail() {
   ><p className="whitespace-nowrap">Edit Rate</p></button>
   
 
-  <button
+  {/* <button
     className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded"
     onClick={() => handleClick(item.orderId)}
   >
     Accept
-  </button>
+  </button> */}
+  <button
+  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+  onClick={() => handleClick(item.orderId)}
+  disabled={item.rate === 0}
+>
+  Accept
+</button>
+
 
   <button
     className="bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded"
@@ -348,6 +362,8 @@ function Detail() {
 </tbody>
 
             </table>
+            <p className="text-sm text-gray-600 px-6 mt-4 italic">* :New customer</p>
+
           </div>
         </div>
       </div>
@@ -399,8 +415,5 @@ function Detail() {
 }
 
 export default Detail;
-
-
-
 
 
