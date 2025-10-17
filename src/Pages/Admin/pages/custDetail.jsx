@@ -281,3 +281,4 @@ function Detail() {
 }
 
 export default Detail;
+//Pkk
